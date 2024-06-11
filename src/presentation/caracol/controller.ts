@@ -16,8 +16,12 @@ export class CaracolController {
       }
         
       const matriz = this.caracolService.generarMatrizCaracol(num);
-      console.log('entra', matriz)
-      res.json({ matriz });
+      const diagonal = this.caracolService.getDiagonal(matriz);
+      const inverseDiagonal = this.caracolService.getInverseDiagonal(matriz);
+      console.log('Matriz Caracol ::> ', matriz)
+      console.log('Diagonal ::> ', diagonal)
+      console.log('Diagonal invertida ::> ', inverseDiagonal)
+      res.json({ matriz: matriz, diagonal: diagonal, inverseDiagonal: inverseDiagonal });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

@@ -1,4 +1,5 @@
 export class CaracolService {
+  
   public generarMatrizCaracol(n: number): number[][] {
     const matriz: number[][] = Array.from({ length: n }, () => Array(n).fill(0));;
 
@@ -9,19 +10,16 @@ export class CaracolService {
     let bottom = n - 1;
 
     while (left <= right && top <= bottom) {
-      // Llenar la fila superior de izquierda a derecha
       for (let i = left; i <= right; i++) {
         matriz[top][i] = num++;
       }
       top++;
 
-      // Llenar la columna derecha de arriba a abajo
       for (let i = top; i <= bottom; i++) {
         matriz[i][right] = num++;
       }
       right--;
 
-      // Llenar la fila inferior de derecha a izquierda
       if (top <= bottom) {
         for (let i = right; i >= left; i--) {
           matriz[bottom][i] = num++;
@@ -29,7 +27,6 @@ export class CaracolService {
         bottom--;
       }
 
-      // Llenar la columna izquierda de abajo a arriba
       if (left <= right) {
         for (let i = bottom; i >= top; i--) {
           matriz[i][left] = num++;
@@ -37,7 +34,25 @@ export class CaracolService {
         left++;
       }
     }
-    // Lógica para generar la matriz estilo caracol aquí...
     return matriz;
   }
+
+  public getDiagonal(matriz: number[][]): number[] {
+    const n = matriz.length;
+    const diagonal = [];
+    for (let i = 0; i < n; i++) {
+      diagonal.push(matriz[i][i]);
+    }
+    return diagonal;
+  }
+
+  public getInverseDiagonal(matriz: number[][]): number[] {
+    const n = matriz.length;
+    const inverseDiagonal = [];
+    for (let i = 0; i < n; i++) {
+      inverseDiagonal.push(matriz[i][n - 1 - i]);
+    }
+    return inverseDiagonal;
+  }
+
 }
