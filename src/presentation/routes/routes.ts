@@ -6,7 +6,7 @@ export class AppRoutes {
 
     console.debug('[IndexRoute::create] Creating index route');
 
-    router.use('/api/')
+    router.get('/api')
 
     return router;
   }
